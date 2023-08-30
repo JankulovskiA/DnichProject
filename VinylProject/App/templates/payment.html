@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let cancel = document.getElementById("cancel")
+            console.log(cancel)
+            cancel.addEventListener("click", () => {
+                window.location = "/index"
+            })
+
+            let proceed = document.getElementById("proceed")
+            proceed.addEventListener("click", () => {
+                window.location = "/success"
+            })
+        })
+    </script>
+    <style>
+        .container {
+            margin-top: 100px;
+            background-color: #e8e8e8;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 350px;
+            height: 500px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h6 {
+            text-align: center;
+        }
+
+        .form-control {
+            box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-top: -18px;
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+        }
+
+        .icon-holder {
+            margin-top: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: end;
+            margin-top: 250px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-row icon-holder">
+        <div class="form-group col-4 icon">
+            <i class="fa-brands fa-cc-visa fa-2xl" style="color: #005eff;"></i>
+        </div>
+        <div class="form-group col-4 icon">
+            <i class="fa-brands fa-cc-mastercard fa-2xl" style="color: #95043e;"></i>
+        </div>
+        <div class="form-group col-4 icon">
+            <i class="fa-brands fa-cc-amex fa-2xl" style="color: #1449a3;"></i>
+        </div>
+    </div>
+    <div class="form-row mt-3">
+        <div class="form-group col-12">
+            <label for="cardNumber"></label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number...">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="date"></label>
+            <input type="text" class="form-control" id="date" placeholder="MM/YY">
+        </div>
+        <div class="form-group col-6">
+            <label for="code"></label>
+            <input type="text" class="form-control" id="code" placeholder="CVV">
+        </div>
+    </div>
+    <div class="form-row buttons">
+        <div class="form-group col-6">
+            <button id="cancel" type="submit" class="btn btn-danger form-control font-weight-bold" style="color:black">
+                Cancel
+            </button>
+        </div>
+        <div class="form-group col-6">
+            <button id="proceed" type="submit" class="btn form-control font-weight-bold" style="color:black;">Buy
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

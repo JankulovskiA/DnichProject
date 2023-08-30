@@ -1,0 +1,205 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <script type="text/javascript" src="{% static 'js/site.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let products = JSON.parse(window.localStorage.getItem("cart"));
+            let holder = document.getElementsByClassName("container")[0]
+            let totalPrice = 0;
+            for (const product of products) {
+                // Create the outer <div> element with class and attributes
+                const productName = product.name;
+                const condition = product.condition;
+                const price = product.price;
+                const year = product.year;
+                const region = product.region;
+                const imgSrc = product.img;
+
+                totalPrice += parseInt(price);
+
+                // Create the outer <div> element with class and attributes
+                const productContainer = document.createElement('div');
+                productContainer.className = 'product-container row mt-4';
+
+                // Create the <img> element with class "col-2" and set attributes
+                const imgElement = document.createElement('img');
+                imgElement.src = imgSrc;
+                imgElement.className = 'col-2';
+                imgElement.style.width = '150px';
+                imgElement.style.height = '150px';
+
+                // Create the product-info <div> element with class "col-3"
+                const productInfoDiv = document.createElement('div');
+                productInfoDiv.className = 'product-info col-3';
+
+                // Create the <h4> element for the product name
+                const titleHeading = document.createElement('h4');
+                titleHeading.textContent = productName;
+
+                // Create <p> element for the product information
+                const infoParagraph = document.createElement('p');
+
+                // Create individual <span> elements for various product details
+                const details = [
+                    {label: 'Condition:', value: condition},
+                    {label: 'Price:', value: price + "$"},
+                    {label: 'Year:', value: year},
+                    {label: 'Region:', value: region}
+                ];
+
+                details.forEach(detail => {
+                    const span = document.createElement('span');
+                    span.textContent = detail.label + ' ' + detail.value;
+                    infoParagraph.appendChild(span);
+                    infoParagraph.appendChild(document.createElement('br'));
+                });
+
+                // Append the imgElement and productInfoDiv to the productContainer
+                productInfoDiv.appendChild(titleHeading)
+                productInfoDiv.appendChild(infoParagraph)
+                productContainer.appendChild(imgElement);
+                productContainer.appendChild(productInfoDiv);
+
+                // Create the second <div> element with class "col-6" and set styles
+                const col6Div = document.createElement('div');
+                col6Div.className = 'col-6';
+                col6Div.style.display = 'flex';
+                col6Div.style.justifyContent = 'end';
+                col6Div.style.alignItems = 'center';
+
+                // Create the <div> element with id "square" inside the second column
+                const squareDiv = document.createElement('div');
+                squareDiv.className = 'square';
+
+                // Create the inner <div> element with id "minus" inside the "square" div
+                const minusDiv = document.createElement('div');
+                minusDiv.id = 'minus';
+
+                // Append the minusDiv to the squareDiv, and then squareDiv to col6Div
+                squareDiv.appendChild(minusDiv);
+                col6Div.appendChild(squareDiv);
+
+                // Append col6Div to the productContainer
+                productContainer.appendChild(col6Div);
+
+                // Append the productContainer to the holder element
+                holder.appendChild(productContainer);
+            }
+            let total = document.getElementById("total")
+            total.innerText = "Total: " + totalPrice + "$";
+
+            let deleteButtons = document.getElementsByClassName("square")
+            for (let i = 0; i < deleteButtons.length; i++) {
+                deleteButtons[i].addEventListener('click', () => {
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    cart = cart.filter((element, index) => index !== i);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    window.location = "/cart"
+                })
+            }
+
+            let proceed = document.getElementsByClassName("btn")[0];
+            console.log(proceed)
+            proceed.addEventListener('click', () => {
+                window.location = "/order"
+            })
+        })
+    </script>
+    <style>
+        hr {
+            height: 2px;
+            background-color: black;
+        }
+
+        .square {
+            width: 60px !important;
+            height: 60px !important;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #minus {
+            width: 15px;
+            height: 5px;
+            background-color: black;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="row" id="header">
+        <div class="col-4 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-user align-center fa-lg" style="color: #000000;"></i>
+                <h4 style="margin: 0 !important;">Account</h4>
+                <i class="fa-solid fa-truck-fast fa-xl align-center ml-3" style="color: #000000;"></i>
+            </div>
+        </div>
+        <div class="col-4 text-center mt-2" id="home">
+            <i class="fa-solid fa-compact-disc fa-lg" style="color: #000000;"></i>
+            <h4>Vinyl made easy</h4>
+        </div>
+        <div class="col-4">
+            <div class="d-flex flex-row header-item mt-3 pr-4" style="justify-content: end">
+                <h4 style=""><u>Search...</u></h4>
+                <i class="fa-solid fa-magnifying-glass align-center" style="color: #000000;"></i>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <h2 class="mt-5">Your Cart</h2>
+    <hr>
+</div>
+<div class="container">
+    <hr class="mt-4">
+    <h2 class="mt-5" id="total">Total</h2>
+    <button type="submit" class="btn btn-lg" style="color: yellow; background-color: #00d200">Proceed</button>
+</div>
+<footer style="margin-top: 14%" id="footer">
+    <div class="row">
+        <div class="col-3 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-circle-question align-center" style="color: #000000;"></i>
+                <span style="margin: 0 !important; font-weight: bold">How does it work</span>
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-circle-exclamation align-center" style="color: #000000;"></i>
+                <span style="margin: 0 !important; font-weight: bold">About us</span>
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <div class="pl-4 pb-2 header-item">
+                <span style="margin: 0 !important; font-weight: bold">Subscribe to our newsletter</span>
+                <label for="newsletter"></label>
+                <input id="newsletter" type="text" placeholder="Email*" class="form-control mt-2" style="width: 70%">
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <span style="margin: 0 !important; font-weight: bold">Contact:</span>
+            <div class="pl-4 pb-2 header-item" style="width: 75%">
+                <i class="fa-solid fa-phone" style="color: #000000;"></i><span> +38975123456/02 389 655</span>
+                <i class="fa-solid fa-envelope" style="color: #000000;"></i><span> vinylmadeeasy@gmail.com</span>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

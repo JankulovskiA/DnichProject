@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <script type="text/javascript" src="{% static 'js/site.js' %}"></script>
+    <style>
+        .container {
+            margin-top: 100px;
+            background-color: #a8703f;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 500px;
+            height: 200px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h6 {
+            text-align: center;
+        }
+
+        .form-control {
+            box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin-top: -18px;
+        }
+
+        .icon-holder {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h5 {
+            color: white;
+            width: 70%;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<header class="header">
+    <div class="row" id="header">
+        <div class="col-4 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-user align-center fa-lg" style="color: #000000;"></i>
+                <h4 style="margin: 0 !important;">Account</h4>
+                <i class="fa-solid fa-truck-fast fa-xl align-center ml-3" style="color: #000000;"></i>
+            </div>
+        </div>
+        <div class="col-4 text-center mt-2" id="home">
+            <i class="fa-solid fa-compact-disc fa-lg" style="color: #000000;"></i>
+            <h4>Vinyl made easy</h4>
+        </div>
+        <div class="col-4">
+            <div class="d-flex flex-row header-item mt-3 pr-4" style="justify-content: end">
+                <h4 style=""><u>Search...</u></h4>
+                <i class="fa-solid fa-magnifying-glass align-center" style="color: #000000;"></i>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="form-row icon-holder">
+        <h5>We’ll review the product and inform you about the outcome</h5>
+    </div>
+</div>
+<footer id="footer" style="margin-top: 22%">
+    <div class="row">
+        <div class="col-3 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-circle-question align-center" style="color: #000000;"></i>
+                <span style="margin: 0 !important; font-weight: bold">How does it work</span>
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-circle-exclamation align-center" style="color: #000000;"></i>
+                <span style="margin: 0 !important; font-weight: bold">About us</span>
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <div class="pl-4 pb-2 header-item">
+                <span style="margin: 0 !important; font-weight: bold">Subscribe to our newsletter</span>
+                <label for="newsletter"></label>
+                <input id="newsletter" type="text" placeholder="Email*" class="form-control mt-2" style="width: 70%">
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <span style="margin: 0 !important; font-weight: bold">Contact:</span>
+            <div class="pl-4 pb-2 header-item" style="width: 75%">
+                <i class="fa-solid fa-phone" style="color: #000000;"></i><span> +38975123456/02 389 655</span>
+                <i class="fa-solid fa-envelope" style="color: #000000;"></i><span> vinylmadeeasy@gmail.com</span>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

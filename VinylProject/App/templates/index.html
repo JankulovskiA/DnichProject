@@ -1,0 +1,204 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <style>
+        #index-main {
+            width: 75%;
+        }
+
+        #index-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 25%;
+        }
+
+        #index-side > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #new-releases {
+            background-image: url("{% static 'images/new-releases.png' %}");
+            background-repeat: no-repeat;
+            width: 920px;
+            height: 340px;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        #buying {
+            background-image: url("{% static 'images/buing.png' %}");
+            background-repeat: no-repeat;
+            width: 436px;
+            height: 300px;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        #selling {
+            background-image: url("{% static 'images/selling.png' %}");
+            background-repeat: no-repeat;
+            width: 436px;
+            height: 300px;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        #quick-actions {
+            margin-left: 0px;
+            gap: 5%;
+        }
+
+        #newsletter {
+            color: white;
+            border-radius: 10px;
+            height: 20%;
+            border-color: white;
+            display: flex;
+            justify-content: flex-end; /* Move child to the right side */
+            align-items: center;
+        }
+
+        #newsletter:active {
+            border-color: white;
+        }
+
+        .right-div {
+            text-align: center;
+            width: 15%;
+            margin-right: 10vw;
+        }
+
+        #new-releases {
+            display: flex;
+            justify-content: flex-end; /* Move child to the right side */
+            align-items: center; /* Vertically center the child */
+        }
+
+        #buying {
+            display: flex;
+            justify-content: center; /* Move child to the right side */
+            align-items: center; /* Vertically center the child */
+        }
+
+        #selling {
+            display: flex;
+            justify-content: center; /* Move child to the right side */
+            align-items: center; /* Vertically center the child */
+        }
+
+        .center-div {
+            text-align: center;
+            width: 35%;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log(document.getElementById("buying"))
+            document.getElementById("buying").addEventListener("click", () => {
+                window.location = "/catalog"
+            });
+            document.getElementById("selling").addEventListener("click", () => {
+                window.location = "/sell"
+            });
+        })
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="row" id="header">
+        <div class="col-4 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-user align-center fa-lg" style="color: #000000;"></i>
+                <h4 style="margin: 0 !important;">Account</h4>
+                <i class="fa-solid fa-truck-fast fa-xl align-center ml-3" style="color: #000000;"></i>
+            </div>
+        </div>
+        <div class="col-4 text-center mt-2">
+            <i class="fa-solid fa-compact-disc fa-lg" style="color: #000000;"></i>
+            <h4>Vinyl made easy</h4>
+        </div>
+        <div class="col-4">
+            <div class="d-flex flex-row header-item mt-3 pr-4" style="justify-content: end">
+                <h4 style=""><u>Search...</u></h4>
+                <i class="fa-solid fa-magnifying-glass align-center" style="color: #000000;"></i>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container main-container">
+    <div class="d-flex flex-row">
+        <div id="index-main" class="mt-5">
+            <div id="new-releases">
+                <div class="right-div"><h1 style="color:white;">New Releases</h1></div>
+            </div>
+            <div class="row mt-4" id="quick-actions">
+                <div id="buying">
+                    <div class="center-div"><h3 style="color:yellow;">Enrich your collection</h3></div>
+                </div>
+                <div id="selling">
+                    <div class="center-div"><h3 style="color:#00e17c;">Start selling</h3></div>
+                </div>
+            </div>
+        </div>
+        <div id="index-side" class="mt-5">
+            <h4><u>Trending Right Now</u></h4>
+            <div class="mt-4">
+                <span style="font-size: 15px">J cole=For your eyes only</span>
+                <img src="/static/images/cover1.png" alt="cover" style="height: 150px; width: 150px;">
+            </div>
+            <div class="mt-4">
+                <span style="font-size: 15px">Fugees-TheScore</span>
+                <img src="/static/images/cover2.png" alt="cover" style="height: 150px; width: 150px;">
+            </div>
+            <div class="mt-4">
+                <span style="max-width: 70%; font-size: 15px">Durand Jones-Wait Till I Get Over</span>
+                <img src="/static/images/cover3.png" alt="cover" style="height: 150px; width: 150px;">
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="mt-5" id="footer">
+    <div class="row">
+        <div class="col-3 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-circle-question align-center" style="color: #000000;"></i>
+                <span style="margin: 0 !important; font-weight: bold">How does it work</span>
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <div class="d-flex flex-row pl-4 header-item mt-3">
+                <i class="fa-solid fa-circle-exclamation align-center" style="color: #000000;"></i>
+                <span style="margin: 0 !important; font-weight: bold">About us</span>
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <div class="pl-4 pb-2 header-item">
+                <span style="margin: 0 !important; font-weight: bold">Subscribe to our newsletter</span>
+                <label for="newsletter"></label>
+                <input id="newsletter" type="text" placeholder="Email*" class="form-control mt-2" style="width: 70%">
+            </div>
+        </div>
+        <div class="col-3 text-left">
+            <span style="margin: 0 !important; font-weight: bold">Contact:</span>
+            <div class="pl-4 pb-2 header-item" style="width: 75%">
+                <i class="fa-solid fa-phone" style="color: #000000;"></i><span> +38975123456/02 389 655</span>
+                <i class="fa-solid fa-envelope" style="color: #000000;"></i><span> vinylmadeeasy@gmail.com</span>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
